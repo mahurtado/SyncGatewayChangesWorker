@@ -28,7 +28,7 @@ public class SyncGatewaySequenceProcessor implements SequenceProcessor {
 	
 	public SyncGatewaySequenceProcessor() {
 		
-		String clientIdFileName = ChangesWorkerConfig.getProperty("SyncGatewaySequenceProcessor.clientIdFile");
+		String clientIdFileName = ChangesWorkerConfig.getPropertyDef("SyncGatewaySequenceProcessor.clientIdFile", "clientId.txt");
 		BufferedReader clientIdFile = null;
 		try {
 			clientIdFile = new BufferedReader(new FileReader(clientIdFileName));
@@ -72,6 +72,8 @@ public class SyncGatewaySequenceProcessor implements SequenceProcessor {
 		String result = "0";
 		try {
 			URL url = new URL(getSyncSeqUri());
+			
+			log.info("getLastProcessedSeq. Connecting to: " + url.toString());
 			
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");

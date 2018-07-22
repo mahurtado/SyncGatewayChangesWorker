@@ -41,6 +41,10 @@ public class ChangesWorkerConfig {
 	public static String getProperty(String propName) {
 		return instance.props.getProperty(propName);
 	}
+	
+	public static String getPropertyDef(String propName, String def) {
+		return instance.props.getProperty(propName, def);
+	}
 
 	public static String getSgAddress() {
 		return instance.props.getProperty("sgAddress");
@@ -87,7 +91,7 @@ public class ChangesWorkerConfig {
 	}
 
 	public static String getFeed() {
-		return instance.props.getProperty("feed");
+		return instance.props.getProperty("feed", "websocket");
 	}
 
 	public static Integer getSince() {
@@ -103,11 +107,11 @@ public class ChangesWorkerConfig {
 	}
 	
 	public static String getMessageProcessor() {
-		return instance.props.getProperty("messageProcessor");
+		return instance.props.getProperty("messageProcessor", "com.sgchanges.engine.change.ConsoleChangeProcessor");
 	}
 	
 	public static String getSequenceProcessor() {
-		return instance.props.getProperty("sequenceProcessor");
+		return instance.props.getProperty("sequenceProcessor", "com.sgchanges.engine.sequence.SyncGatewaySequenceProcessor") ;
 	}
 	
 	public static Integer getRetrySeconds() {

@@ -29,13 +29,11 @@ public class KafkaChangeProcessor implements ChangeProcessor {
 	}
 
 	@Override
-	public String process(String msg) {
-		JsonObject json = parser.parse(msg).getAsJsonObject();;
+	public String process(String msg) throws Exception {
+		JsonObject json = parser.parse(msg).getAsJsonObject();
 		String key = json.get("seq").toString();
-
 		ProducerRecord<String, String> data = new ProducerRecord<String, String>(topic, key, msg);
-		producer.send(data);
-
+		producer.send(data).get();
 		return key;
 	}
 

@@ -2,6 +2,7 @@ package com.sgchanges.utils;
 
 public class RetryManager {
 	
+	private static final int FOREVER = 0;
 	private int interval;
 	private int times;
 	private int current;
@@ -14,7 +15,7 @@ public class RetryManager {
 	}
 	
 	public boolean hasNext() {
-		return current < times;
+		return times == FOREVER ? true : current < times;
 	}
 	
 	public long getNextWaitTime() {

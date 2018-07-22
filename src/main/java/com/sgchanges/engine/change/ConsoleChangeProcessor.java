@@ -13,7 +13,7 @@ public class ConsoleChangeProcessor implements ChangeProcessor {
 
 	@Override
 	public String process(String msg) {
-		JsonObject json = parser.parse(msg).getAsJsonObject();;
+		JsonObject json = parser.parse(msg).getAsJsonObject();
 		Object seq = json.get("seq");
 		System.out.println(msg);
 		return seq.toString();
