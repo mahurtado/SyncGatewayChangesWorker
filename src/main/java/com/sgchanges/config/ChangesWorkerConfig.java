@@ -35,6 +35,8 @@ public class ChangesWorkerConfig {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			log.severe("Cannot load configuration, please provide a configuration file. USe the system property:  -D" + CONFIG_FILE_PROP + "=[your_file]");
+			System.exit(0);
 		}
 	}
 
